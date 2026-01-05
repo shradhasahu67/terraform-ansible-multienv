@@ -7,12 +7,8 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 
 ---
 
-## 🏗️ Architecture
-- AWS EC2 instances per environment
-- Environment isolation: `dev`, `stg`, `prd`
-- Terraform-managed infrastructure
-- Ansible-managed configuration (Nginx)
-<img width="1096" height="831" alt="image" src="https://github.com/user-attachments/assets/8f8a35ee-5995-4a18-b181-fac778255fe6" />
+## 🏗️ Architecture diagram
+<img width="835" height="618" alt="image" src="https://github.com/user-attachments/assets/cdd5d44c-1469-4677-85e5-b17ff43459ee" />
 
 ---
 
@@ -25,7 +21,63 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 
 ---
 
-## 📂 Project Structure
+⚙️ Infrastructure Provisioning with Terraform
+1️⃣ Initialize Terraform
+terraform init:
+![alt text](image.png)
+
+2️⃣ Review the Execution Plan
+terraform plan:
+![alt text](image-1.png)
+
+
+3️⃣ Apply Infrastructure
+terraform apply:
+![alt text](image-2.png)
+
+
+You can see below that all instance , buckets ,dynamodb are running or created , which is created through Terraform :
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-6.png)
+
+🔁 Dynamic Inventory with Ansible
+The update_inventories.sh script:
+
+Reads Terraform outputs
+
+Automatically updates Ansible inventories for:
+dev
+stg
+prod
+
+7️⃣ Ansible Role Creation
+
+Initialized an Nginx role using Ansible Galaxy
+
+Created reusable tasks for:
+
+Installing Nginx
+
+Starting and enabling service
+
+Deploying a custom web page
+
+8️⃣ Configuration Management
+
+Ran Ansible playbooks for each environment:
+
+Dev
+
+Staging
+
+Production
+
+Ensured consistent configuration across all EC2 instances
+
+
 
 
 ---
