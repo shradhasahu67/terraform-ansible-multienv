@@ -12,6 +12,7 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 - Environment isolation: `dev`, `stg`, `prd`
 - Terraform-managed infrastructure
 - Ansible-managed configuration (Nginx)
+<img width="1096" height="831" alt="image" src="https://github.com/user-attachments/assets/8f8a35ee-5995-4a18-b181-fac778255fe6" />
 
 ---
 
