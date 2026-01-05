@@ -1,0 +1,7 @@
+[servers]
+server1 ansible_host=44.192.78.184
+
+[servers:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file=/mnt/c/Users/ASUS/terraform/terraform/tf-key-ec2
+ansible_python_interpreter=/usr/bin/python3

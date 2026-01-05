@@ -1,0 +1,10 @@
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+tf-key-ec2
+tf-key-ec2.pub
+**/.terraform/*
+
+tools/
+
+.vscode/
