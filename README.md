@@ -33,7 +33,7 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 aws configure
 ``` 
 
-Set:
+Set:  
 - Access Key
 - Secret Key
 - AWS Region
@@ -98,7 +98,7 @@ terraform apply
 ```
 <img width="986" height="779" alt="image" src="https://github.com/user-attachments/assets/5e18242d-69fe-4580-813f-8987e9c70bf3" />
 
-- Result:
+- Result:  
 ✔️ S3 bucket created
 ✔️ DynamoDB table created
 ✔️ EC2 instances created
@@ -106,25 +106,21 @@ terraform apply
 
 You can see below that all instance , buckets ,dynamodb are running or created , which is created through Terraform :
 - EC2 instances
-- 
 <img width="1916" height="480" alt="image" src="https://github.com/user-attachments/assets/4052a71e-f014-466d-830f-1fcda2e22871" />
 
 - Volumes
-- 
 <img width="1919" height="433" alt="image" src="https://github.com/user-attachments/assets/2e64c39e-2156-42f2-a209-282944291644" />
 
 - Security groups
-- 
 <img width="1906" height="251" alt="image" src="https://github.com/user-attachments/assets/4de5d98a-7cdd-472e-8856-f7fc07110d6b" />
 
--S3 buckets
-
+- S3 buckets
 <img width="1919" height="563" alt="image" src="https://github.com/user-attachments/assets/0c29bf9a-3494-4bdb-9371-984194ab8e7f" />
 
 ---
 
 ## Step 7️⃣ Terraform Outputs for Ansible
-Terraform outputs store:
+Terraform outputs store:  
 - Public IPs
 - Environment-specific instance details.
   
@@ -133,7 +129,7 @@ These outputs are consumed by Ansible for configuration management.
 ---
 
 ## Step 8️⃣ Dynamic Ansible Inventory Update
-Moved to Ansible directory:
+Moved to Ansible directory:  
 ```bash
 cd ansible
 bash update_inventories.sh
@@ -141,12 +137,12 @@ bash update_inventories.sh
 
 <img width="1025" height="682" alt="image" src="https://github.com/user-attachments/assets/b5ae463b-dd9e-44f3-8825-01e0e5258701" />
 
-- What the Script Does:
+- What the Script Does:  
 ✔️ Reads Terraform outputs  
 ✔️ Automatically updates inventory files  
 ✔️ No manual IP handling  
 
-- Inventories updated:
+- Inventories updated:  
 <img width="937" height="818" alt="image" src="https://github.com/user-attachments/assets/25928f0e-5791-45c1-8d99-e2c1f4947846" />
 
 
@@ -159,9 +155,9 @@ inventories/
 ---
 
 ## Step 9️⃣ Configuration Management Using Ansible
-- Use Ansible playbook: 'install_nginx.yml'.
+- Use Ansible playbook: 'install_nginx.yml'.  
 
-Executed per environment:
+Executed per environment:  
 ```bash
 ansible-playbook -i ansible/inventories/dev ansible/playbooks/install_nginx.yml
 ansible-playbook -i ansible/inventories/stg ansible/playbooks/install_nginx.yml
@@ -175,17 +171,17 @@ ansible-playbook -i ansible/inventories/prd ansible/playbooks/install_nginx.yml
 
 <img width="1896" height="677" alt="image" src="https://github.com/user-attachments/assets/dac362eb-6625-482c-ac16-3a7f12b03cc9" />
 
-- Playbook Actions:
-1️⃣ SSH connection to EC2
-2️⃣ Install Nginx
-3️⃣ Enable Nginx service
-4️⃣ Start service
-5️⃣ Ensure idempotency
+- Playbook Actions:  
+1️⃣ SSH connection to EC2  
+2️⃣ Install Nginx  
+3️⃣ Enable Nginx service  
+4️⃣ Start service  
+5️⃣ Ensure idempotency  
 
 ---
 
 ## Step 🔟 Verification
-- Open browser and access:
+- Open browser and access:  
 
 ```text
 http://<EC2-Public-IP>
@@ -194,12 +190,12 @@ http://<EC2-Public-IP>
 <img width="1912" height="946" alt="image" src="https://github.com/user-attachments/assets/8ef74d79-935d-480f-b620-3c86e7ce9ca9" />
 <img width="1911" height="972" alt="image" src="https://github.com/user-attachments/assets/b42878ce-065a-49f2-9955-fd32b58ae59d" />
 
-- Verified Nginx page is accessible.
+- Verified Nginx page is accessible.  
 
 ---
 
 ## Step 1️⃣1️⃣ Cleanup
--Destroyed all resources:
+-Destroyed all resources:  
 
 ```bash
 cd terraform
@@ -210,7 +206,7 @@ terraform destroy
 <img width="1220" height="831" alt="image" src="https://github.com/user-attachments/assets/c4319d0e-43fe-4aec-8c3f-cbeb0615838a" />
 <img width="1904" height="552" alt="image" src="https://github.com/user-attachments/assets/0edc42b0-92dd-4637-a7f1-e368bb29e9b0" />
 
-✔️ Prevented unnecessary AWS cost
-✔️ Clean environment teardown
+✔️ Prevented unnecessary AWS cost  
+✔️ Clean environment teardown  
 
 
