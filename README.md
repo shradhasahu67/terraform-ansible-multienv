@@ -20,7 +20,8 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 - Git & GitHub
 
 ---
-Step 1️⃣ AWS IAM & CLI Configuration
+
+##Step 1️⃣ AWS IAM & CLI Configuration
 -Created a dedicated IAM user e.g. 'terra-admin' with required permissions.
 -Generated Access Key and Secret Access Key.
 
@@ -38,8 +39,9 @@ Set:
 -AWS Region
 <img width="555" height="323" alt="image" src="https://github.com/user-attachments/assets/f7784c0e-aaa4-4d3c-a93a-c250b4639114" />
 
+---
 
-Step 2️⃣ SSH Key Generation for EC2 Access
+##Step 2️⃣ SSH Key Generation for EC2 Access
 -Generated SSH key pair using:
 ```bash
 ssh-keygen
@@ -49,7 +51,9 @@ ssh-keygen
 -Private key securely stored locally.
 -Key files excluded from Git using .gitignore
 
-Step 3️⃣ Terraform Base Structure
+---
+
+##Step 3️⃣ Terraform Base Structure
 -Created Terraform base structure under terraform/:
 
 ```text
@@ -61,13 +65,18 @@ terraform/
 ```
 -'main.tf' consists of environment-specific values like instance count and type are passed to modules.
 
+---
 
-Step 4️⃣ Terraform Infrastructure Modules
+##Step 4️⃣ Terraform Infrastructure Modules
 Created reusable infrastructure modules inside:
 
-Step 5️⃣ Terraform Backend Configuration
+---
 
-Step 6️⃣ Terraform Initialization & Deployment
+##Step 5️⃣ Terraform Backend Configuration
+---
+
+
+##Step 6️⃣ Terraform Initialization & Deployment
 -Initialize Terraform
 ```bash
 terraform init
@@ -102,13 +111,17 @@ You can see below that all instance , buckets ,dynamodb are running or created ,
 S3 buckets
 <img width="1919" height="563" alt="image" src="https://github.com/user-attachments/assets/0c29bf9a-3494-4bdb-9371-984194ab8e7f" />
 
-Step 7️⃣ Terraform Outputs for Ansible
+---
+
+##Step 7️⃣ Terraform Outputs for Ansible
 Terraform outputs store:
 -Public IPs
 -Environment-specific instance details
 These outputs are consumed by Ansible for configuration management.
 
-Step 8️⃣ Dynamic Ansible Inventory Update
+---
+
+##Step 8️⃣ Dynamic Ansible Inventory Update
 Moved to Ansible directory:
 ```bash
 cd ansible
@@ -130,8 +143,17 @@ inventories/
 ├── stg
 ├── prd
 ```
+---
 
-Step 9️⃣ Configuration Management Using Ansible
+##Step 9️⃣ Configuration Management Using Ansible
+Use Ansible playbook: 'install_nginx.yml'
+
+Executed per environment:
+```bash
+ansible-playbook -i ansible/inventories/dev ansible/playbooks/install_nginx.yml
+ansible-playbook -i ansible/inventories/stg ansible/playbooks/install_nginx.yml
+ansible-playbook -i ansible/inventories/prd ansible/playbooks/install_nginx.yml
+```
 
 <img width="1740" height="205" alt="image" src="https://github.com/user-attachments/assets/e7047ad8-f4da-4998-8a66-ac5236aaa59f" />
 <img width="1919" height="448" alt="image" src="https://github.com/user-attachments/assets/c9e7a8ca-7ea2-4c2d-86d3-6ad17f930a19" />
@@ -139,18 +161,41 @@ Step 9️⃣ Configuration Management Using Ansible
 <img width="1919" height="778" alt="image" src="https://github.com/user-attachments/assets/bc195327-ca38-4b8f-a333-f69c2f607a64" />
 <img width="1896" height="677" alt="image" src="https://github.com/user-attachments/assets/dac362eb-6625-482c-ac16-3a7f12b03cc9" />
 
-🌐 Verify in browser
+Playbook Actions:
+1️⃣ SSH connection to EC2
+2️⃣ Install Nginx
+3️⃣ Enable Nginx service
+4️⃣ Start service
+5️⃣ Ensure idempotency
+
+---
+
+##Step 🔟 Verification
+-Open browser and access:
+
+```text
+http://<EC2-Public-IP>
+```
+
 <img width="1912" height="946" alt="image" src="https://github.com/user-attachments/assets/8ef74d79-935d-480f-b620-3c86e7ce9ca9" />
 <img width="1911" height="972" alt="image" src="https://github.com/user-attachments/assets/b42878ce-065a-49f2-9955-fd32b58ae59d" />
+-Verified Nginx page is accessible.
 
+---
 
+##Step 1️⃣1️⃣ Cleanup
+Destroyed all resources:
 
-
-
+```bash
+cd terraform
 terraform destroy
+```
+
 <img width="1259" height="562" alt="image" src="https://github.com/user-attachments/assets/102a77ea-c2e5-4633-b442-0ac47f99c22d" />
 <img width="1220" height="831" alt="image" src="https://github.com/user-attachments/assets/c4319d0e-43fe-4aec-8c3f-cbeb0615838a" />
 <img width="1904" height="552" alt="image" src="https://github.com/user-attachments/assets/0edc42b0-92dd-4637-a7f1-e368bb29e9b0" />
 
+✔️ Prevented unnecessary AWS cost
+✔️ Clean environment teardown
 
 
