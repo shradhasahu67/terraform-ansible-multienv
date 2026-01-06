@@ -28,6 +28,7 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 <img width="1897" height="800" alt="image" src="https://github.com/user-attachments/assets/6a8bfaef-8e55-4bab-bbd4-30024fa11efc" />
 <img width="1899" height="778" alt="image" src="https://github.com/user-attachments/assets/41f96f47-a1a1-4cb4-8184-92667d14bd13" />
 
+
 - Configured AWS CLI in VS Code terminal:
 ```bash
 aws configure
@@ -71,9 +72,29 @@ terraform/
 ## Step 4️⃣ Terraform Infrastructure Modules
 Created reusable infrastructure modules inside:
 
+Resources Provisioned:  
+- EC2 instances
+- Key pairs
+- Security Groups
+- S3 bucket
+- DynamoDB table
+
+```text
+terraform/infra/
+├── variables.tf
+├── ec2.tf
+├── bucket.tf
+├── dynamo.tf
+├── output.tf
+```
+
 ---
 
-## Step 5️⃣ Terraform Backend Configuration
+## Step 5️⃣ Terraform Backend Configuration(optional)
+we can also configure remote backend for state management:
+- S3 used for storing Terraform state
+- DynamoDB used for state locking
+  
 ---
 
 
@@ -85,6 +106,7 @@ terraform init
 
 <img width="1145" height="744" alt="image" src="https://github.com/user-attachments/assets/2a6e5df4-9759-4602-8b24-c915d55ae55f" />
 
+
 - Review the Execution Plan
 ```bash
 terraform plan
@@ -92,11 +114,13 @@ terraform plan
 
 <img width="1080" height="691" alt="image" src="https://github.com/user-attachments/assets/c6dd1399-a137-448a-a819-11da05e17b78" />
 
+
 - Apply Infrastructure
 ```bash
 terraform apply
 ```
 <img width="986" height="779" alt="image" src="https://github.com/user-attachments/assets/5e18242d-69fe-4580-813f-8987e9c70bf3" />
+
 
 - Result:  
 ✔️ S3 bucket created  
@@ -195,7 +219,7 @@ http://<EC2-Public-IP>
 ---
 
 ## Step 1️⃣1️⃣ Cleanup
--Destroyed all resources:  
+- Destroyed all resources:  
 
 ```bash
 cd terraform
