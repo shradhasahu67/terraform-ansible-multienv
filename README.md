@@ -142,12 +142,11 @@ bash update_inventories.sh
 <img width="1025" height="682" alt="image" src="https://github.com/user-attachments/assets/b5ae463b-dd9e-44f3-8825-01e0e5258701" />
 
 - What the Script Does:
-✔️ Reads Terraform outputs
-✔️ Automatically updates inventory files
-✔️ No manual IP handling
+✔️ Reads Terraform outputs  
+✔️ Automatically updates inventory files  
+✔️ No manual IP handling  
 
 - Inventories updated:
-- 
 <img width="937" height="818" alt="image" src="https://github.com/user-attachments/assets/25928f0e-5791-45c1-8d99-e2c1f4947846" />
 
 
