@@ -30,59 +30,109 @@ Step 1️⃣ AWS IAM & CLI Configuration
 -Configured AWS CLI in VS Code terminal:
 ```bash
 aws configure
-
+``` 
 
 Set:
-
-Access Key
-
-Secret Key
-
-AWS Region
+-Access Key
+-Secret Key
+-AWS Region
 <img width="555" height="323" alt="image" src="https://github.com/user-attachments/assets/f7784c0e-aaa4-4d3c-a93a-c250b4639114" />
 
 
 Step 2️⃣ SSH Key Generation for EC2 Access
-Generated SSH key pair using:
-
+-Generated SSH key pair using:
+```bash
 ssh-keygen
+```
+
+-Public key used for EC2 access.
+-Private key securely stored locally.
+-Key files excluded from Git using .gitignore
+
+Step 3️⃣ Terraform Base Structure
+-Created Terraform base structure under terraform/:
+
+```text
+terraform/
+├── providers.tf
+├── variables.tf
+├── outputs.tf
+├── main.tf   (used to call environment modules)
+```
+-'main.tf' consists of environment-specific values like instance count and type are passed to modules.
 
 
-Public key used for EC2 access.
+Step 4️⃣ Terraform Infrastructure Modules
+Created reusable infrastructure modules inside:
 
-Private key securely stored locally.
+Step 5️⃣ Terraform Backend Configuration
 
-Key files excluded from Git using .gitignore
-<img width="321" height="55" alt="image" src="https://github.com/user-attachments/assets/06c31f24-55cb-49ac-b39c-992abbe61e34" />
-
-
-⚙️ Infrastructure Provisioning with Terraform
-1️⃣ Initialize Terraform
-terraform init:
+Step 6️⃣ Terraform Initialization & Deployment
+-Initialize Terraform
+```bash
+terraform init
+```
 <img width="1145" height="744" alt="image" src="https://github.com/user-attachments/assets/2a6e5df4-9759-4602-8b24-c915d55ae55f" />
 
-2️⃣ Review the Execution Plan
-terraform plan:
+-Review the Execution Plan
+```bash
+terraform plan
+```
 <img width="1080" height="691" alt="image" src="https://github.com/user-attachments/assets/c6dd1399-a137-448a-a819-11da05e17b78" />
 
-
-3️⃣ Apply Infrastructure
-terraform apply:
+-Apply Infrastructure
+```bash
+terraform apply
+```
 <img width="986" height="779" alt="image" src="https://github.com/user-attachments/assets/5e18242d-69fe-4580-813f-8987e9c70bf3" />
 
+-Result:
+✔️ S3 bucket created
+✔️ DynamoDB table created
+✔️ EC2 instances created
+✔️ Public IPs generated as outputs
 
 You can see below that all instance , buckets ,dynamodb are running or created , which is created through Terraform :
+-EC2 instances
 <img width="1916" height="480" alt="image" src="https://github.com/user-attachments/assets/4052a71e-f014-466d-830f-1fcda2e22871" />
+-Volumes
 <img width="1919" height="433" alt="image" src="https://github.com/user-attachments/assets/2e64c39e-2156-42f2-a209-282944291644" />
+-Security groups
 <img width="1906" height="251" alt="image" src="https://github.com/user-attachments/assets/4de5d98a-7cdd-472e-8856-f7fc07110d6b" />
+S3 buckets
 <img width="1919" height="563" alt="image" src="https://github.com/user-attachments/assets/0c29bf9a-3494-4bdb-9371-984194ab8e7f" />
 
+Step 7️⃣ Terraform Outputs for Ansible
+Terraform outputs store:
+-Public IPs
+-Environment-specific instance details
+These outputs are consumed by Ansible for configuration management.
 
-
-
-
+Step 8️⃣ Dynamic Ansible Inventory Update
+Moved to Ansible directory:
+```bash
+cd ansible
+bash update_inventories.sh
+```
 <img width="1025" height="682" alt="image" src="https://github.com/user-attachments/assets/b5ae463b-dd9e-44f3-8825-01e0e5258701" />
+
+What the Script Does:
+✔️ Reads Terraform outputs
+✔️ Automatically updates inventory files
+✔️ No manual IP handling
+
+-Inventories updated:
 <img width="937" height="818" alt="image" src="https://github.com/user-attachments/assets/25928f0e-5791-45c1-8d99-e2c1f4947846" />
+
+```text
+inventories/
+├── dev
+├── stg
+├── prd
+```
+
+Step 9️⃣ Configuration Management Using Ansible
+
 <img width="1740" height="205" alt="image" src="https://github.com/user-attachments/assets/e7047ad8-f4da-4998-8a66-ac5236aaa59f" />
 <img width="1919" height="448" alt="image" src="https://github.com/user-attachments/assets/c9e7a8ca-7ea2-4c2d-86d3-6ad17f930a19" />
 
