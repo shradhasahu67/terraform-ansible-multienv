@@ -21,7 +21,7 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 
 ---
 
-##Step 1️⃣ AWS IAM & CLI Configuration
+## Step 1️⃣ AWS IAM & CLI Configuration
 -Created a dedicated IAM user e.g. 'terra-admin' with required permissions.
 -Generated Access Key and Secret Access Key.
 
@@ -41,7 +41,7 @@ Set:
 
 ---
 
-##Step 2️⃣ SSH Key Generation for EC2 Access
+## Step 2️⃣ SSH Key Generation for EC2 Access
 -Generated SSH key pair using:
 ```bash
 ssh-keygen
@@ -53,7 +53,7 @@ ssh-keygen
 
 ---
 
-##Step 3️⃣ Terraform Base Structure
+## Step 3️⃣ Terraform Base Structure
 -Created Terraform base structure under terraform/:
 
 ```text
@@ -67,16 +67,16 @@ terraform/
 
 ---
 
-##Step 4️⃣ Terraform Infrastructure Modules
+## Step 4️⃣ Terraform Infrastructure Modules
 Created reusable infrastructure modules inside:
 
 ---
 
-##Step 5️⃣ Terraform Backend Configuration
+## Step 5️⃣ Terraform Backend Configuration
 ---
 
 
-##Step 6️⃣ Terraform Initialization & Deployment
+## Step 6️⃣ Terraform Initialization & Deployment
 -Initialize Terraform
 ```bash
 terraform init
@@ -113,7 +113,7 @@ S3 buckets
 
 ---
 
-##Step 7️⃣ Terraform Outputs for Ansible
+## Step 7️⃣ Terraform Outputs for Ansible
 Terraform outputs store:
 -Public IPs
 -Environment-specific instance details
@@ -121,7 +121,7 @@ These outputs are consumed by Ansible for configuration management.
 
 ---
 
-##Step 8️⃣ Dynamic Ansible Inventory Update
+## Step 8️⃣ Dynamic Ansible Inventory Update
 Moved to Ansible directory:
 ```bash
 cd ansible
@@ -145,7 +145,7 @@ inventories/
 ```
 ---
 
-##Step 9️⃣ Configuration Management Using Ansible
+## Step 9️⃣ Configuration Management Using Ansible
 Use Ansible playbook: 'install_nginx.yml'
 
 Executed per environment:
@@ -170,7 +170,7 @@ Playbook Actions:
 
 ---
 
-##Step 🔟 Verification
+## Step 🔟 Verification
 -Open browser and access:
 
 ```text
@@ -183,7 +183,7 @@ http://<EC2-Public-IP>
 
 ---
 
-##Step 1️⃣1️⃣ Cleanup
+## Step 1️⃣1️⃣ Cleanup
 Destroyed all resources:
 
 ```bash
