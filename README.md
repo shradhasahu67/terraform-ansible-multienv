@@ -21,15 +21,14 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 
 ---
 Step 1️⃣ AWS IAM & CLI Configuration
-
-Created a dedicated IAM user terra-admin with required permissions.
-
-Generated Access Key and Secret Access Key.
+-Created a dedicated IAM user e.g. 'terra-admin' with required permissions.
+-Generated Access Key and Secret Access Key.
 
 <img width="1897" height="800" alt="image" src="https://github.com/user-attachments/assets/6a8bfaef-8e55-4bab-bbd4-30024fa11efc" />
 <img width="1899" height="778" alt="image" src="https://github.com/user-attachments/assets/41f96f47-a1a1-4cb4-8184-92667d14bd13" />
-Configured AWS CLI in VS Code terminal:
 
+-Configured AWS CLI in VS Code terminal:
+```bash
 aws configure
 
 
