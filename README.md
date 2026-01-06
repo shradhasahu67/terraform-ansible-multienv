@@ -20,13 +20,40 @@ The infrastructure is created using Infrastructure as Code (IaC) principles and 
 - Git & GitHub
 
 ---
+Step 1️⃣ AWS IAM & CLI Configuration
+
+Created a dedicated IAM user terra-admin with required permissions.
+
+Generated Access Key and Secret Access Key.
 
 <img width="1897" height="800" alt="image" src="https://github.com/user-attachments/assets/6a8bfaef-8e55-4bab-bbd4-30024fa11efc" />
 <img width="1899" height="778" alt="image" src="https://github.com/user-attachments/assets/41f96f47-a1a1-4cb4-8184-92667d14bd13" />
+Configured AWS CLI in VS Code terminal:
+
+aws configure
+
+
+Set:
+
+Access Key
+
+Secret Key
+
+AWS Region
 <img width="555" height="323" alt="image" src="https://github.com/user-attachments/assets/f7784c0e-aaa4-4d3c-a93a-c250b4639114" />
 
 
-Generate key to login ec2
+Step 2️⃣ SSH Key Generation for EC2 Access
+Generated SSH key pair using:
+
+ssh-keygen
+
+
+Public key used for EC2 access.
+
+Private key securely stored locally.
+
+Key files excluded from Git using .gitignore
 <img width="321" height="55" alt="image" src="https://github.com/user-attachments/assets/06c31f24-55cb-49ac-b39c-992abbe61e34" />
 
 
