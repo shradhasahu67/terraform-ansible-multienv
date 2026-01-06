@@ -99,10 +99,10 @@ terraform apply
 <img width="986" height="779" alt="image" src="https://github.com/user-attachments/assets/5e18242d-69fe-4580-813f-8987e9c70bf3" />
 
 - Result:  
-✔️ S3 bucket created
-✔️ DynamoDB table created
-✔️ EC2 instances created
-✔️ Public IPs generated as outputs
+✔️ S3 bucket created  
+✔️ DynamoDB table created  
+✔️ EC2 instances created  
+✔️ Public IPs generated as outputs  
 
 You can see below that all instance , buckets ,dynamodb are running or created , which is created through Terraform :
 - EC2 instances
